@@ -56,8 +56,9 @@ from rl.memory import SequentialMemory
 from rl.callbacks import FileLogger, ModelIntervalCheckpoint
 if __name__=='__main__':
         G=reseau_elec.create_graph()
-        env=RL_ADMM_stocha_10.ADMM_Env_rho_unique()
+        env=RL_ADMM_stocha_10.ADMM_Env_rho_unique()# appeler ici l'envrionnement qui vous intéresse (dimension de l'espace des Etats+ avec ou sans stochasticité + log ou non)
         actions=env.action_space.n
+        # Definition du réseau de neuronnes
         model = Sequential()
         model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
         model.add(Dense(32))
@@ -77,17 +78,20 @@ if __name__=='__main__':
 
         #actions=env.action_space.shape[0]
         print(actions)
+        #Def de la memoire et de la policy
         memory = SequentialMemory(limit=50000, window_length=1)
         policy = BoltzmannQPolicy()
         #policy = LinearAnnealedPolicy(EpsGreedyQPolicy(), attr='eps', 
                             # value_max=1., value_min=0.1, value_test=0, nb_steps=1)
+        #Choix de l'agent(voir doc Keras-RL)
         dqn = DQNAgent(model=model, nb_actions=actions, memory=memory, nb_steps_warmup=60,target_model_update=1e-2, policy=policy)
         for ind in [str(1500*(i+1)) for i in range(65,66)]:
             moy=0
                             
             dqn.compile(Adam(lr=float(sys.argv[1])), metrics=['mae'])
-            dqn.load_weights('model_DQN_stocha_boltz_dim10_'+sys.argv[1]+'_weights_'+ind+'.h5f')
+            dqn.load_weights('model_DQN_stocha_boltz_dim10_'+sys.argv[1]+'_weights_'+ind+'.h5f')# (appel d'un agent entrainé et enregistré)
             for ind in range(30):
+                #test de l'agent
                 obs=env.reset()
 
                 done=False
