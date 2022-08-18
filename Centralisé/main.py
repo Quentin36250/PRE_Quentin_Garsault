@@ -95,10 +95,7 @@ if __name__=='__main__':
 	  if(j!=0):
 	    summe+=4*(P_max[j]-p[j])**2+2*q[j]**2
 	summe+= sum((G[f][t]['x']+G[f][t]['r'])*l[G[f][t]['num_arete']] for (f,t) in G.edges())
-	liste=[[f,t] for (f,t) in G.edges()]
-
-	print(liste)
 
 	objective=cp.Minimize(summe)
 	prob=cp.Problem(objective,constraints)
-	result=prob.solve(solver=cp.ECOS,verbose=True)
+	result=prob.solve(solver=cp.ECOS,verbose=True)# affichage de la solution et des informations du solveur (verbose =True), on peut aussi changer le solveur: ECOS,SCS,CVXOPT,...
