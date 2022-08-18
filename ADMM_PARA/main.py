@@ -135,8 +135,8 @@ if __name__=="__main__":
             #OU
 
             
-            #remote_function = ray.remote(time_consuming_function)
-            #results = ray.get([solving_para(x) for x in data])
+            #remote_function = ray.remote(solving_para)
+            #result = ray.get([remote_function(x) for x in data])
 
 
 
@@ -175,8 +175,8 @@ if __name__=="__main__":
             if(compt>=200 or (primal_residual<1E-4 and rho*dual_residual< 1E-4)):
                 done=True
                 nb_it.append(compt)
-                print(compt)
-                print(prim)
-                print(du)
+                print(compt)#afficher le nombre d'itérations
+                print(prim)#afficher l'évolution des normes des résidus primaux
+                print(du)#afficher l'évolution des normes des résidus duaux
 
 
