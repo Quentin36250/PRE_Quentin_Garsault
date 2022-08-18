@@ -13,8 +13,10 @@ Pour le problème centralisé:
 Pour lancer la résolution du pb: il faut execucter main.py dans le dossier centralsié
 
 Pour l'ADMM:
+Dans le dossier ADMM_Para
 
-Pour lancer le programme avec la parallélisation il faut choisir la librairie voulue dans le fichier main_para.py (en mettant en commentaires les autres)
-et exécuter 
+Pour lancer le programme avec la parallélisation il faut choisir la librairie voulue dans le fichier main.py (en mettant en commentaires les autres)
+et exécuter main.py
 
 
+Pour lancer le programme avec l'algorithme de rho adaptatif trouvé dans "Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers", il faut executer main_adapt.py
