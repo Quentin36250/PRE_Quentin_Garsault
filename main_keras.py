@@ -64,8 +64,10 @@ cp.installed_solvers()
 
 if __name__=="__main__":
     G=reseau_elec.create_graph()
+    # Choix de l'environneemnt d'apprentissage (diff RL_ADMM_*: stocha ou non, dim, log ou non)
     env=RL_ADMM_stocha_10.ADMM_Env_rho_unique()
     actions=env.action_space.n
+    # def du réseau de neuronnes
     model = Sequential()
     model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
     model.add(Dense(32))
@@ -77,12 +79,14 @@ if __name__=="__main__":
     model.add(Dense(actions))
     model.add(Activation('linear'))
     #env=RL_ADMM_stocha.ADMM_Env_rho_unique()
+    #Enregristrement de l'agent durant l'entrainement tous les 1500 steps d'apprentissage (voir doc Keras-RL)
     callbacks = [ModelIntervalCheckpoint('model_DQN_stocha_boltz_dim10_'+sys.argv[1]+'_weights_{step}.h5f', interval=1500)]
     states=env.observation_space.shape[0]
     print(states)
     
     #actions=env.action_space.shape[0]
     print(actions)
+    #Def memoire et policy
     memory = SequentialMemory(limit=50000, window_length=1)
     policy = BoltzmannQPolicy()
     #policy = LinearAnnealedPolicy(EpsGreedyQPolicy(), 
@@ -91,11 +95,14 @@ if __name__=="__main__":
      #                         value_min=.1,
      #                         value_test=.0,
      #                         nb_steps=20000)
+     #Choix de l'agent: voir doc keras-RL
     dqn = DQNAgent(model=model, nb_actions=actions, memory=memory, nb_steps_warmup=60,
                target_model_update=1e-2, policy=policy)
     dqn.compile(Adam(lr=float(sys.argv[1])), metrics=['mae'])
     env.reset()
+    #lancement de l'entrainement
     dqn.fit(env, nb_steps=100000, visualize=False, verbose=2,callbacks=callbacks)
+    #enregistrement de l'agent avec une entrainement complet.
     dqn.save_weights('dqn_{}_keras.h5f'.format(sys.argv[1]), overwrite=True)
     #model=A2C("MlpPolicy",env,verbose=0,learning_rate=float(sys.argv[1]))
     #model=DDPG("MlpPolicy",env,verbose=0,learning_rate=float(sys.argv[1]),buffer_size=300000,policy_kwargs=policy_kwargs)
