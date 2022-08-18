@@ -10,8 +10,11 @@ Pour ces deux fichiers, pour pouvoir les éxecuter il faut donner en argument le
 
 Pour le problème centralisé:
 
-Pour lancer la résolution du pb: il faut excucter main.py dans le dossier Centralsié
+Pour lancer la résolution du pb: il faut execucter main.py dans le dossier centralsié
 
 Pour l'ADMM:
+
+Pour lancer le programme avec la parallélisation il faut choisir la librairie voulue dans le fichier main_para.py (en mettant en commentaires les autres)
+et exécuter 
 
 
