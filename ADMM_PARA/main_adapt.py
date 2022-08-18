@@ -54,7 +54,7 @@ def solving_para(x):
     rho_data_qjk.value=x[1]
     rho_data_pjk.value=x[1]
     result=np.zeros(11)
-    liste_problem[x[0]].solve(solver=cp.ECOS)
+    liste_problem[x[0]].solve(solver=cp.ECOS) #resolution du sous-problème et choix du solveur
     if(liste_problem[x[0]].status!='optimal'):
         return np.zeros(11)
     else:
@@ -150,8 +150,7 @@ if __name__=="__main__":
         compt+=1
         choix_rho.append(rho)
         dual.append(rho*dual_residual)
-        primal.append(primal_residual)
-        print(rho)
+        primal.append(primal_residual)# adptation du rho
         if(compt>=200 or (primal_residual<1E-4 and rho*dual_residual< 1E-4)):
             done=True
         if(primal_residual>10*rho*dual_residual):
@@ -160,10 +159,10 @@ if __name__=="__main__":
             rho=rho/2
 
 
-    print(compt)
-    print(choix_rho)
-    print(primal)
-    print(dual)
+    print(compt) # affichage du nombre d'itérations d'ADMM
+    print(choix_rho)# affichage de la politique du choix de rho
+    print(primal)# affichage de l'evolution des normes des résidus primaux
+    print(dual)# affichage de l'evolution des normes des résidus duaux
 
 
     
