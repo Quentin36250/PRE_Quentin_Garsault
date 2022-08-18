@@ -58,7 +58,7 @@ if __name__=='__main__':
         G=reseau_elec.create_graph()
         env=RL_ADMM_stocha_10.ADMM_Env_rho_unique()# appeler ici l'envrionnement qui vous intéresse (dimension de l'espace des Etats+ avec ou sans stochasticité + log ou non)
         actions=env.action_space.n
-        # Definition du réseau de neuronnes
+        # Definition du réseau de neurones
         model = Sequential()
         model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
         model.add(Dense(32))
