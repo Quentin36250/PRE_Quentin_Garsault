@@ -56,7 +56,7 @@ def solving_para(x):
     rho_data_qjk.value=x[1]
     rho_data_pjk.value=x[1]
     result=np.zeros(11)
-    liste_problem[x[0]].solve(solver=cp.ECOS)
+    liste_problem[x[0]].solve(solver=cp.ECOS)# resolution du sous-probleme et choix du solveur
     if(liste_problem[x[0]].status!='optimal'):
         return np.zeros(11)
     else:
