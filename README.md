@@ -23,4 +23,5 @@ Pour lancer le programme avec l'algorithme de rho adaptatif trouvé dans "Distri
 
 Dans le fichier requirement.txt, vous avez accés à toutes les librairies nécessaires. 
 
-Pour utiliser les fichiers .sh, il faut utiliser le cluster Nic5. Le tuto pour se connecter et lancer les programmes est dans le PPT tuto_nic5.PDF
+Pour utiliser les fichiers .sh, il faut utiliser le cluster Nic5. Le tuto pour se connecter et lancer les programmes est dans le PPT tuto_nic5.PDF. De plus, il faut exécuter la lignes suivante à chaque overture de programme pour éxecuter notre programme:
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ulg/sysmod/garsault/miniconda3/lib
