@@ -21,4 +21,6 @@ et exécuter main.py
 
 Pour lancer le programme avec l'algorithme de rho adaptatif trouvé dans "Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers", il faut executer main_adapt.py
 
+Dans le fichier requirement.txt, vous avez accés à toutes les librairies nécessaires. 
+
 Pour utiliser les fichiers .sh, il faut utiliser le cluster Nic5. Le tuto pour se connecter et lancer les programmes est dans le PPT tuto_nic5.PDF
